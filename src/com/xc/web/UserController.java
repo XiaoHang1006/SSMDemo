@@ -17,6 +17,5 @@ public class UserController {
 
 	@RequestMapping(value = "/hello")
 	public void Hello(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 	}
 }
