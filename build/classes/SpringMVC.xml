@@ -16,6 +16,7 @@
 	<!-- SpringMVC && Spring -->
 	<context:component-scan base-package="com.xc.web" />
 	<context:component-scan base-package="com.xc.service" />
+	<context:component-scan base-package="com.xc.webSocket"/>
 
 	<!-- configure the InternalResourceViewResolver -->
 	<bean
@@ -26,12 +27,4 @@
 		<!-- 后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	<bean id="myHandler" class="com.xc.webSocket.MyHandler"/>  
-	<websocket:handlers>  
-	    <websocket:mapping path="/myHandler" handler="myHandler"/>
-	    <websocket:handshake-interceptors>
-	    	<bean class="com.xc.webSocket.HandleShake"></bean>
-	    </websocket:handshake-interceptors>  
-	</websocket:handlers> 
 </beans>

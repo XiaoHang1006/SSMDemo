@@ -7,16 +7,16 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
-public class MyHandler implements WebSocketHandler {
+public class MyHandlerTest implements WebSocketHandler {
 	public static HashMap<Integer, Object> sessionMap = new HashMap<>();
 
 	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus arg1) throws Exception {
-
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus arg1) {
+		System.out.println("关闭状态: " + arg1.getReason());
 	}
 
 	@Override
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+	public void afterConnectionEstablished(WebSocketSession session){
 		int userid = (Integer) session.getAttributes().get("userID");
 		System.out.println("这里被链接："+userid);
 		if (sessionMap.get(userid) == null)
@@ -24,18 +24,19 @@ public class MyHandler implements WebSocketHandler {
 	}
 
 	@Override
-	public void handleMessage(WebSocketSession session, WebSocketMessage<?> arg1) throws Exception {
-
+	public void handleMessage(WebSocketSession session, WebSocketMessage<?> arg1) {
+			System.out.println("这里被执行了");
 	}
 
 	@Override
-	public void handleTransportError(WebSocketSession session, Throwable arg1) throws Exception {
-
+	public void handleTransportError(WebSocketSession session, Throwable arg1) {
+		System.out.println("handleTransportError");
 	}
 
 	@Override
 	public boolean supportsPartialMessages() {
-		return false;
+		System.out.println("supportsPartialMessages");
+		return true;
 	}
 
 }
